@@ -27,27 +27,27 @@ public class WireMockJUnit5Test {
 
     public void setupStub() {
         wireMockServer.stubFor(get(urlEqualTo("/an/endpoint"))
-                .willReturn(aResponse().withHeader("Content-Type", "text/plain")
-                        .withStatus(200)
-                        .withBodyFile("json/glossary.json")));
+            .willReturn(aResponse().withHeader("Content-Type", "text/plain")
+                .withStatus(200)
+                .withBodyFile("json/glossary.json")));
     }
 
     @Test
     public void testStatusCodePositive() {
         given().
-                when().
-                get("http://localhost:8090/an/endpoint").
-                then().
-                assertThat().statusCode(200);
+            when().
+            get("http://localhost:8090/an/endpoint").
+            then().
+            assertThat().statusCode(200);
     }
 
     @Test
     public void testStatusCodeNegative() {
         given().
-                when().
-                get("http://localhost:8090/another/endpoint").
-                then().
-                assertThat().statusCode(404);
+            when().
+            get("http://localhost:8090/another/endpoint").
+            then().
+            assertThat().statusCode(404);
     }
 
     @Test
